@@ -1,0 +1,50 @@
+import { useState, useEffect, useCallback } from 'react';
+import type { Employee } from '../types/employee';
+import { MOCK_EMPLOYEES, MONTHS } from '../data/employees';
+
+const LOADING_DELAY = 600;
+
+export const useEmployeeRanking = () => {
+  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [monthIndex, setMonthIndex] = useState(0);
+
+  const currentMonth = MONTHS[monthIndex];
+  const canGoPrev = monthIndex > 0;
+  const canGoNext = monthIndex < MONTHS.length - 1;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const filteredData = MOCK_EMPLOYEES.filter((item) => item.month === currentMonth);
+      const sortedData = [...filteredData].sort((a, b) => a.lateMinutes - b.lateMinutes);
+      setEmployees(sortedData);
+      setLoading(false);
+    }, LOADING_DELAY);
+
+    return () => clearTimeout(timer);
+  }, [currentMonth]);
+
+  const goToPrevMonth = useCallback(() => {
+    if (canGoPrev) {
+      setLoading(true);
+      setMonthIndex((prev) => prev - 1);
+    }
+  }, [canGoPrev]);
+
+  const goToNextMonth = useCallback(() => {
+    if (canGoNext) {
+      setLoading(true);
+      setMonthIndex((prev) => prev + 1);
+    }
+  }, [canGoNext]);
+
+  return {
+    employees,
+    loading,
+    currentMonth,
+    canGoPrev,
+    canGoNext,
+    goToPrevMonth,
+    goToNextMonth,
+  };
+};

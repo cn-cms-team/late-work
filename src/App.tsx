@@ -1,0 +1,51 @@
+import { useEmployeeRanking } from './hooks/useEmployeeRanking';
+import { MonthSelector, RuleCard, EmployeeList } from './components';
+import teamPhoto from './assets/team-photo.jpg';
+
+const App = () => {
+  const { employees, loading, currentMonth, canGoPrev, canGoNext, goToPrevMonth, goToNextMonth } =
+    useEmployeeRanking();
+
+  return (
+    <div className="min-h-screen text-slate-800 p-4 md:p-8 font-sans relative">
+      {/* Background Image */}
+      <div
+        className="fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${teamPhoto})` }}
+      />
+      {/* Dark Overlay */}
+      <div className="fixed inset-0 -z-10 bg-indigo-900/80 backdrop-blur-xs" />
+
+      <div className="max-w-md mx-auto relative">
+        {/* Background glow effect */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -z-10 animate-pulse" />
+
+        {/* Header */}
+        <header className="mb-8 text-center pt-4">
+          <h1 className="text-3xl font-bold text-white mb-1 drop-shadow-sm tracking-wide">
+            Late Ranking
+          </h1>
+
+          <MonthSelector
+            currentMonth={currentMonth}
+            canGoPrev={canGoPrev}
+            canGoNext={canGoNext}
+            onPrev={goToPrevMonth}
+            onNext={goToNextMonth}
+          />
+        </header>
+
+        <RuleCard />
+
+        <EmployeeList employees={employees} loading={loading} />
+
+        {/* Footer */}
+        <footer className="fixed bottom-0 left-0 w-full p-4 bg-linear-to-t from-indigo-950 to-transparent text-center text-xs text-indigo-200/60 backdrop-blur-sm">
+          <p>Updated: Today 09:00 AM</p>
+        </footer>
+      </div>
+    </div>
+  );
+};
+
+export default App;
