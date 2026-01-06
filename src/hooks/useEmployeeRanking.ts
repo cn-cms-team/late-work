@@ -9,7 +9,7 @@ export const useEmployeeRanking = () => {
   const [loading, setLoading] = useState(true);
   const [monthIndex, setMonthIndex] = useState(0);
 
-  const currentMonth = MONTHS[monthIndex];
+  const currentMonth = monthIndex;
   const canGoPrev = monthIndex > 0;
   const canGoNext = monthIndex < MONTHS.length - 1;
 

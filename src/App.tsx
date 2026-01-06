@@ -23,7 +23,7 @@ const App = () => {
         {/* Header */}
         <header className="mb-8 text-center pt-4">
           <h1 className="text-3xl font-bold text-white mb-1 drop-shadow-sm tracking-wide">
-            Late Ranking
+            Late Ranking 2026
           </h1>
 
           <MonthSelector

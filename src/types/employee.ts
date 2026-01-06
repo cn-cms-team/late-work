@@ -3,7 +3,7 @@ export interface Employee {
   name: string;
   lateMinutes: number;
   department: string;
-  month: string;
+  month: number;
 }
 
 export type RankPosition = 'winner' | 'loser' | 'normal';

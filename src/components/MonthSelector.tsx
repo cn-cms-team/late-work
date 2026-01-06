@@ -1,7 +1,8 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { MONTHS } from '../data/employees';
 
 interface MonthSelectorProps {
-  currentMonth: string;
+  currentMonth: number;
   canGoPrev: boolean;
   canGoNext: boolean;
   onPrev: () => void;
@@ -20,7 +21,7 @@ export const MonthSelector = ({
       <button
         onClick={onPrev}
         disabled={!canGoPrev}
-        className={`p-2 rounded-full hover:bg-white/20 transition-all ${
+        className={`p-2 rounded-full hover:bg-white/20 transition-all cursor-pointer ${
           !canGoPrev ? 'opacity-30 cursor-not-allowed' : 'text-white'
         }`}
         aria-label="Previous month"
@@ -29,13 +30,13 @@ export const MonthSelector = ({
       </button>
 
       <span className="text-lg font-medium text-white w-28 tracking-wide text-center">
-        {currentMonth}
+        {MONTHS[currentMonth]}
       </span>
 
       <button
         onClick={onNext}
         disabled={!canGoNext}
-        className={`p-2 rounded-full hover:bg-white/20 transition-all ${
+        className={`p-2 rounded-full hover:bg-white/20 transition-all cursor-pointer ${
           !canGoNext ? 'opacity-30 cursor-not-allowed' : 'text-white'
         }`}
         aria-label="Next month"
