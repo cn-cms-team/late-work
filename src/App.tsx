@@ -1,5 +1,7 @@
 import { useEmployeeRanking } from './hooks/useEmployeeRanking';
-import { MonthSelector, RuleCard, EmployeeList } from './components';
+import { MonthSelector } from './components/MonthSelector';
+import { RuleCard } from './components/RuleCard';
+import { EmployeeList } from './components/EmployeeList';
 import teamPhoto from './assets/team-photo.jpg';
 
 const App = () => {

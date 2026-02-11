@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Trophy } from 'lucide-react';
 import type { Employee, RankPosition } from '../types/employee';
 import { getRankPosition, getRankStyle, getRankBadgeStyle } from '../utils/ranking';
@@ -9,7 +10,7 @@ interface EmployeeCardProps {
   total: number;
 }
 
-export const EmployeeCard = ({ employee, index, total }: EmployeeCardProps) => {
+export const EmployeeCard = memo(({ employee, index, total }: EmployeeCardProps) => {
   const position: RankPosition = getRankPosition(index, total);
   const cardStyle = getRankStyle(position);
   const badgeStyle = getRankBadgeStyle(position);
@@ -45,4 +46,6 @@ export const EmployeeCard = ({ employee, index, total }: EmployeeCardProps) => {
       </div>
     </div>
   );
-};
+});
+
+EmployeeCard.displayName = 'EmployeeCard';

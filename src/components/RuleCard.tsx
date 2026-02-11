@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { ArrowDown } from 'lucide-react';
 
-export const RuleCard = () => {
+export const RuleCard = memo(() => {
   return (
     <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 mb-8 border border-white/20 shadow-xl text-white">
       <div className="flex items-center justify-between gap-4">
@@ -26,4 +27,6 @@ export const RuleCard = () => {
       </div>
     </div>
   );
-};
+});
+
+RuleCard.displayName = 'RuleCard';
