@@ -17,7 +17,7 @@ const App = () => {
         style={{ backgroundImage: `url(${teamPhoto})` }}
       />
       {/* Dark Overlay */}
-      <div className="fixed inset-0 -z-10 bg-indigo-900/80 backdrop-blur-xs" />
+      <div className="fixed inset-0 -z-10 backdrop-blur-xs bg-linear-to-r from-indigo-500/70 from-10% via-sky-500/70 via-30% to-emerald-500/70 to-90%" />
 
       <div className="max-w-md mx-auto relative">
         {/* Background glow effect */}
@@ -43,7 +43,7 @@ const App = () => {
         <EmployeeList employees={employees} loading={loading} />
 
         {/* Footer */}
-        <footer className="fixed bottom-0 left-0 w-full p-4 bg-linear-to-t from-indigo-950 to-transparent text-center text-xs text-indigo-200/60 backdrop-blur-sm">
+        <footer className="fixed bottom-0 left-0 w-full p-4 bg-linear-to-t from-indigo-550 to-transparent text-center text-xs text-indigo-500/90 backdrop-blur-sm">
           <p>Updated: {getLastUpdated()}</p>
         </footer>
       </div>
