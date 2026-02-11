@@ -24,5 +24,18 @@ export const MOCK_EMPLOYEES: Employee[] = [
   { id: 5, name: 'กู้', lateMinutes: 0, department: 'Dev', month: 0 },
   { id: 6, name: 'โย', lateMinutes: 15, department: 'Dev', month: 0 },
   { id: 7, name: 'เอ็ม', lateMinutes: 21, department: 'Dev', month: 0 },
-  { id: 8, name: 'ตี๋', lateMinutes: 1, department: 'Dev', month: 0 }
+  { id: 8, name: 'ตี๋', lateMinutes: 1, department: 'Dev', month: 0 },
 ];
+
+export const getLastUpdated = (): string => {
+  // For demo purposes, we return a fixed date in a human-readable format.
+  const date = new Date('2026-02-11T10:30:00');
+  return date.toLocaleString('en-EN', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+};

@@ -3,6 +3,7 @@ import { MonthSelector } from './components/MonthSelector';
 import { RuleCard } from './components/RuleCard';
 import { EmployeeList } from './components/EmployeeList';
 import teamPhoto from './assets/team-photo.jpg';
+import { getLastUpdated } from './data/employees';
 
 const App = () => {
   const { employees, loading, currentMonth, canGoPrev, canGoNext, goToPrevMonth, goToNextMonth } =
@@ -43,7 +44,7 @@ const App = () => {
 
         {/* Footer */}
         <footer className="fixed bottom-0 left-0 w-full p-4 bg-linear-to-t from-indigo-950 to-transparent text-center text-xs text-indigo-200/60 backdrop-blur-sm">
-          <p>Updated: Today 09:00 AM</p>
+          <p>Updated: {getLastUpdated()}</p>
         </footer>
       </div>
     </div>
