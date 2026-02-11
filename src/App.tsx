@@ -17,7 +17,7 @@ const App = () => {
         style={{ backgroundImage: `url(${teamPhoto})` }}
       />
       {/* Dark Overlay */}
-      <div className="fixed inset-0 -z-10 backdrop-blur-xs bg-linear-to-r from-indigo-500/70 from-10% via-sky-500/70 via-30% to-emerald-500/70 to-90%" />
+      <div className="fixed inset-0 -z-10 backdrop-blur-xs bg-linear-to-r from-indigo-500/70 from-10% via-sky-500/70 via-30% to-pink-300/70 to-90%" />
 
       <div className="max-w-md mx-auto relative">
         {/* Background glow effect */}
