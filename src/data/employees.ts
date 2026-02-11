@@ -17,14 +17,14 @@ export const MONTHS = [
 
 export const MOCK_EMPLOYEES: Employee[] = [
   // มกราคม
-  { id: 1, name: 'นุ๊กเกอร์', lateMinutes: 5, department: 'Dev', month: 0 },
-  { id: 2, name: 'ตุ๋ง', lateMinutes: 0, department: 'Dev', month: 0 },
-  { id: 3, name: 'บอส', lateMinutes: 45, department: 'Dev', month: 0 },
-  { id: 4, name: 'เอิร์ธ', lateMinutes: 12, department: 'Dev', month: 0 },
-  { id: 5, name: 'กู้', lateMinutes: 120, department: 'Dev', month: 0 },
-  { id: 6, name: 'โย', lateMinutes: 2, department: 'Dev', month: 0 },
-  { id: 7, name: 'เอ็ม', lateMinutes: 95, department: 'Dev', month: 0 },
-  { id: 8, name: 'ตี๋', lateMinutes: 0, department: 'Dev', month: 0 },
+  { id: 1, name: 'นุ๊กเกอร์', lateMinutes: 0, department: 'Dev', month: 0 },
+  { id: 2, name: 'ตุ๋ง', lateMinutes: 104, department: 'Dev', month: 0 },
+  { id: 3, name: 'บอส', lateMinutes: 0, department: 'Dev', month: 0 },
+  { id: 4, name: 'เอิร์ธ', lateMinutes: 0, department: 'Dev', month: 0 },
+  { id: 5, name: 'กู้', lateMinutes: 0, department: 'Dev', month: 0 },
+  { id: 6, name: 'โย', lateMinutes: 15, department: 'Dev', month: 0 },
+  { id: 7, name: 'เอ็ม', lateMinutes: 21, department: 'Dev', month: 0 },
+  { id: 8, name: 'ตี๋', lateMinutes: 1, department: 'Dev', month: 0 },
 
   // กุมภาพันธ์
   { id: 11, name: 'นุ๊กเกอร์', lateMinutes: 15, department: 'Dev', month: 1 },
