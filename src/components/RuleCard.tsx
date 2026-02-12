@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Users } from 'lucide-react';
 
 export const RuleCard = memo(() => {
   return (
@@ -25,8 +25,17 @@ export const RuleCard = memo(() => {
           </div>
         </div>
       </div>
+
+      {/* Zero-minute bonus rule */}
+      <div className="mt-3 flex items-center gap-2 p-3 bg-amber-500/20 rounded-xl border border-amber-400/30">
+        <Users size={16} className="text-amber-300 shrink-0" />
+        <p className="text-xs text-amber-100/90 font-medium">
+          ⭐ ถ้าคนสาย 0 นาที มากกว่า 2 คน → ทุกคนที่ 0 นาที ได้กินฟรี!
+        </p>
+      </div>
     </div>
   );
 });
 
 RuleCard.displayName = 'RuleCard';
+

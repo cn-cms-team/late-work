@@ -1,10 +1,20 @@
-import type { RankPosition } from '../types/employee';
+import type { Employee, RankPosition } from '../types/employee';
 
-const WINNER_COUNT = 2;
+const DEFAULT_WINNER_COUNT = 2;
 const LOSER_COUNT = 2;
+const ZERO_MINUTE_THRESHOLD = 2;
 
-export const getRankPosition = (index: number, total: number): RankPosition => {
-  if (index < WINNER_COUNT) return 'winner';
+export const getWinnerCount = (employees: Employee[]): number => {
+  const zeroMinuteCount = employees.filter((e) => e.lateMinutes === 0).length;
+  if (zeroMinuteCount > ZERO_MINUTE_THRESHOLD) {
+    return zeroMinuteCount;
+  }
+  return DEFAULT_WINNER_COUNT;
+};
+
+export const getRankPosition = (index: number, total: number, employees: Employee[]): RankPosition => {
+  const winnerCount = getWinnerCount(employees);
+  if (index < winnerCount) return 'winner';
   if (index >= total - LOSER_COUNT) return 'loser';
   return 'normal';
 };

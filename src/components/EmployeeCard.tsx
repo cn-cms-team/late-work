@@ -8,10 +8,11 @@ interface EmployeeCardProps {
   employee: Employee;
   index: number;
   total: number;
+  employees: Employee[];
 }
 
-export const EmployeeCard = memo(({ employee, index, total }: EmployeeCardProps) => {
-  const position: RankPosition = getRankPosition(index, total);
+export const EmployeeCard = memo(({ employee, index, total, employees }: EmployeeCardProps) => {
+  const position: RankPosition = getRankPosition(index, total, employees);
   const cardStyle = getRankStyle(position);
   const badgeStyle = getRankBadgeStyle(position);
 
@@ -49,3 +50,4 @@ export const EmployeeCard = memo(({ employee, index, total }: EmployeeCardProps)
 });
 
 EmployeeCard.displayName = 'EmployeeCard';
+

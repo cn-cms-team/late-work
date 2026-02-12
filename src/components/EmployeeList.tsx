@@ -30,6 +30,7 @@ export const EmployeeList = ({ employees, loading }: EmployeeListProps) => {
           employee={employee}
           index={index}
           total={employees.length}
+          employees={employees}
         />
       ))}
     </div>
