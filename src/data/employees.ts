@@ -49,3 +49,7 @@ export const getLastUpdated = (): string => {
     minute: '2-digit',
   });
 };
+
+export const getLatestMonth = () => {
+  return Math.max(...MOCK_EMPLOYEES.map((e) => e.month));
+};

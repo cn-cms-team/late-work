@@ -1,16 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { Employee } from '../types/employee';
-import { MOCK_EMPLOYEES, MONTHS } from '../data/employees';
+import { getLatestMonth, MOCK_EMPLOYEES, MONTHS } from '../data/employees';
 
 const LOADING_DELAY = 600;
+
 
 export const useEmployeeRanking = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [loading, setLoading] = useState(true);
-  const [monthIndex, setMonthIndex] = useState(() => {
-    const m = new Date().getMonth() - 1;
-    return Math.min(Math.max(m, 0), MONTHS.length - 1);
-  });
+  const [monthIndex, setMonthIndex] = useState(getLatestMonth());
 
   const currentMonth = monthIndex;
   const canGoPrev = monthIndex > 0;
