@@ -32,6 +32,14 @@ export const RuleCard = memo(() => {
         <p className="text-xs text-white font-semibold drop-shadow">
           ⭐ ถ้าคนสาย 0 นาที มากกว่า 2 คน → ทุกคนที่ 0 นาที ได้กินฟรี!
         </p>
+        
+      </div>
+
+      <div className="mt-2 flex items-center gap-2 p-3 bg-rose-500/30 rounded-xl border border-rose-400/40 shadow-md">
+        <Users size={16} className="text-rose-300 shrink-0 drop-shadow" />
+        <p className="text-xs text-white font-semibold drop-shadow">
+          💀 ถ้าเวลาสายเท่ากันคนแพ้ → แพ้ร่วมกัน
+        </p>
       </div>
     </div>
   );

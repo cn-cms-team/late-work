@@ -12,10 +12,19 @@ export const getWinnerCount = (employees: Employee[]): number => {
   return DEFAULT_WINNER_COUNT;
 };
 
+export const getLoserCount = (employees: Employee[], total: number): number => {
+  if (total <= LOSER_COUNT) {
+    return employees[0]?.lateMinutes;
+  }
+  const loserIndex = total - LOSER_COUNT;
+  return employees[loserIndex].lateMinutes;
+};
+
 export const getRankPosition = (index: number, total: number, employees: Employee[]): RankPosition => {
   const winnerCount = getWinnerCount(employees);
+  const loserCount = getLoserCount(employees, total);
   if (index < winnerCount) return 'winner';
-  if (index >= total - LOSER_COUNT) return 'loser';
+  if (employees[index].lateMinutes >= loserCount) return 'loser';  
   return 'normal';
 };
 
