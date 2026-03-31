@@ -35,6 +35,16 @@ export const MOCK_EMPLOYEES: Employee[] = [
   { id: 16, name: 'โย', lateMinutes: 15, department: 'Dev', month: 1 },
   { id: 17, name: 'เอ็ม', lateMinutes: 7, department: 'Dev', month: 1 },
   { id: 18, name: 'ตี๋', lateMinutes: 3, department: 'Dev', month: 1 },
+
+  // มีนาคม 
+  { id: 19, name: 'นุ๊กเกอร์', lateMinutes: 0, department: 'Dev', month: 2 },
+  { id: 20, name: 'ตุ๋ง', lateMinutes: 162, department: 'Dev', month: 2 },
+  { id: 21, name: 'บอส', lateMinutes: 12, department: 'Dev', month: 2 },
+  { id: 22, name: 'เอิร์ธ', lateMinutes: 0, department: 'Dev', month: 2 },
+  { id: 23, name: 'กู้', lateMinutes: 0, department: 'Dev', month: 2 },
+  { id: 24, name: 'โย', lateMinutes: 22, department: 'Dev', month: 2 },
+  { id: 25, name: 'เอ็ม', lateMinutes: 0, department: 'Dev', month: 2 },
+  { id: 26, name: 'ตี๋', lateMinutes: 0, department: 'Dev', month: 2 },
 ];
 
 export const getLastUpdated = (): string => {
