@@ -6,7 +6,7 @@ import teamPhoto from './assets/team-photo.jpg';
 import { getLastUpdated } from './data/employees';
 
 const App = () => {
-  const { employees, loading, currentMonth, canGoPrev, canGoNext, goToPrevMonth, goToNextMonth } =
+  const { employees, loading, currentMonth, canGoPrev, canGoNext, goToPrevMonth, goToNextMonth, cumulativeTeamLateMinutes } =
     useEmployeeRanking();
 
   return (
@@ -39,6 +39,13 @@ const App = () => {
         </header>
 
         <RuleCard />
+
+        <div className="mb-6 bg-white/20 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-white/30 text-center">
+          <h2 className="text-white/90 font-medium mb-1">เวลาการมาสายรวมกันของทีม (สะสม)</h2>
+          <p className="text-4xl font-bold text-white drop-shadow-md">
+            {loading ? '...' : `${cumulativeTeamLateMinutes} นาที`}
+          </p>
+        </div>
 
         <EmployeeList employees={employees} loading={loading} />
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import type { Employee } from '../types/employee';
 import { getLatestMonth, MOCK_EMPLOYEES, MONTHS } from '../data/employees';
 
@@ -39,6 +39,12 @@ export const useEmployeeRanking = () => {
     }
   }, [canGoNext]);
 
+  const cumulativeTeamLateMinutes = useMemo(() => {
+    return MOCK_EMPLOYEES
+      .filter((item) => item.month <= currentMonth)
+      .reduce((total, item) => total + item.lateMinutes, 0);
+  }, [currentMonth]);
+
   return {
     employees,
     loading,
@@ -47,5 +53,6 @@ export const useEmployeeRanking = () => {
     canGoNext,
     goToPrevMonth,
     goToNextMonth,
+    cumulativeTeamLateMinutes,
   };
 };
