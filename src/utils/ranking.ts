@@ -20,28 +20,51 @@ export const getLoserCount = (employees: Employee[], total: number): number => {
   return employees[loserIndex].lateMinutes;
 };
 
-export const getRankPosition = (index: number, total: number, employees: Employee[]): RankPosition => {
+export const getRankPosition = (
+  index: number,
+  total: number,
+  employees: Employee[]
+): RankPosition => {
   const winnerCount = getWinnerCount(employees);
   const loserCount = getLoserCount(employees, total);
   if (index < winnerCount) return 'winner';
-  if (employees[index].lateMinutes >= loserCount) return 'loser';  
+  if (employees[index].lateMinutes >= loserCount) return 'loser';
   return 'normal';
+};
+
+/** Calculate HP bar percentage (0% = no late = full HP, 100% = max late = zero HP) */
+export const getHpPercent = (lateMinutes: number, maxLate: number): number => {
+  if (maxLate === 0) return 0;
+  return Math.min((lateMinutes / maxLate) * 100, 100);
+};
+
+/** Get HP bar color based on damage taken */
+export const getHpColor = (percent: number): string => {
+  if (percent <= 25) return 'bg-emerald-400';
+  if (percent <= 50) return 'bg-yellow-400';
+  if (percent <= 75) return 'bg-orange-400';
+  return 'bg-red-500';
+};
+
+/** Get the max late minutes among employees for HP bar scaling */
+export const getMaxLate = (employees: Employee[]): number => {
+  return Math.max(...employees.map((e) => e.lateMinutes), 1);
 };
 
 export const getRankStyle = (position: RankPosition): string => {
   const styles: Record<RankPosition, string> = {
-    winner: 'bg-white/95 backdrop-blur shadow-lg border-l-4 border-yellow-400 translate-x-1',
-    loser: 'bg-white/90 backdrop-blur shadow-md border-l-4 border-rose-500',
-    normal: 'bg-white/80 backdrop-blur hover:bg-white/95 border-l-4 border-transparent',
+    winner: 'bg-deep-void/80 border border-arcane/30',
+    loser: 'bg-deep-void/80 border border-crimson/30',
+    normal: 'bg-deep-void/60 border border-white/5',
   };
   return styles[position];
 };
 
 export const getRankBadgeStyle = (position: RankPosition): string => {
   const styles: Record<RankPosition, string> = {
-    winner: 'bg-yellow-100 text-yellow-700',
-    loser: 'bg-rose-100 text-rose-700',
-    normal: 'bg-slate-100 text-slate-500',
+    winner: 'bg-gold/20 text-gold border border-gold/30',
+    loser: 'bg-crimson/20 text-crimson border border-crimson/30',
+    normal: 'bg-white/5 text-white/40 border border-white/10',
   };
   return styles[position];
 };

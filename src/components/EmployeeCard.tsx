@@ -1,7 +1,14 @@
 import { memo } from 'react';
-import { Trophy } from 'lucide-react';
+import { Crown } from 'lucide-react';
 import type { Employee, RankPosition } from '../types/employee';
-import { getRankPosition, getRankStyle, getRankBadgeStyle } from '../utils/ranking';
+import {
+  getRankPosition,
+  getRankStyle,
+  getRankBadgeStyle,
+  getHpPercent,
+  getHpColor,
+  getMaxLate,
+} from '../utils/ranking';
 import { RankBadge } from './RankBadge';
 
 interface EmployeeCardProps {
@@ -15,39 +22,67 @@ export const EmployeeCard = memo(({ employee, index, total, employees }: Employe
   const position: RankPosition = getRankPosition(index, total, employees);
   const cardStyle = getRankStyle(position);
   const badgeStyle = getRankBadgeStyle(position);
+  const maxLate = getMaxLate(employees);
+  const hpPercent = getHpPercent(employee.lateMinutes, maxLate);
+  const hpColor = getHpColor(hpPercent);
+  const isWinner = position === 'winner';
+  const isLoser = position === 'loser';
 
   return (
     <div
-      className={`p-4 rounded-2xl flex items-center justify-between transition-all duration-300 hover:scale-[1.02] ${cardStyle}`}
+      className={`p-3 rounded transition-all duration-300 hover:brightness-125 ${cardStyle} ${isWinner ? 'glow-gold' : ''}`}
     >
-      <div className="flex items-center gap-4">
-        <div
-          className={`shrink-0 w-10 h-10 flex items-center justify-center rounded-xl font-bold text-sm shadow-sm ${badgeStyle}`}
-        >
-          {index === 0 ? <Trophy size={18} className="text-yellow-600" /> : index + 1}
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-3">
+          {/* Rank number */}
+          <div
+            className={`shrink-0 w-8 h-8 flex items-center justify-center font-pixel text-[10px] ${badgeStyle}`}
+          >
+            {index === 0 ? <Crown size={14} className="text-gold" /> : index + 1}
+          </div>
+
+          {/* Name & class */}
+          <div>
+            <h3
+              className={`font-sans text-sm font-bold leading-tight ${isWinner ? 'text-gold' : isLoser ? 'text-crimson' : 'text-white/80'}`}
+            >
+              {employee.name}
+            </h3>
+            <p className="font-mono text-[9px] text-white/30 tracking-wider">
+              LV.{index + 1} {employee.department}
+            </p>
+          </div>
         </div>
-        <div>
-          <h3 className="font-bold text-slate-800 text-lg leading-tight">{employee.name}</h3>
-          <p className="text-xs font-medium text-slate-500 uppercase tracking-wide mt-0.5">
-            {employee.department}
-          </p>
+
+        {/* Damage number */}
+        <div className="text-right">
+          <div className="flex items-baseline gap-1">
+            <span className={`font-pixel text-sm ${isLoser ? 'text-crimson' : 'text-white/70'}`}>
+              {employee.lateMinutes}
+            </span>
+            <span className="font-mono text-[8px] text-white/30">DMG</span>
+          </div>
+          <div className="mt-1">
+            <RankBadge position={position} />
+          </div>
         </div>
       </div>
 
-      <div className="text-right">
-        <div className="text-2xl font-bold text-slate-700 tabular-nums tracking-tight">
-          {employee.lateMinutes}
-          <span className="text-xs font-medium text-slate-400 ml-1 align-top relative top-1">
-            min
-          </span>
-        </div>
-        <div className="mt-2 flex justify-end">
-          <RankBadge position={position} />
-        </div>
+      {/* HP Bar */}
+      <div className="h-2 bg-white/5 rounded-sm overflow-hidden">
+        <div
+          className={`h-full ${hpColor} rounded-sm transition-all duration-700 ease-out hp-bar-fill`}
+          style={{ width: `${hpPercent}%` }}
+        />
+      </div>
+      <div className="flex justify-between mt-0.5">
+        <span className="font-mono text-[7px] text-white/20">HP</span>
+        <span className="font-mono text-[7px] text-white/20">
+          {employee.lateMinutes === 0 ? 'FULL' : `${Math.round(100 - hpPercent)}%`}
+        </span>
       </div>
     </div>
   );
 });
 
 EmployeeCard.displayName = 'EmployeeCard';
-

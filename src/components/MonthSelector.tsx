@@ -13,31 +13,37 @@ interface MonthSelectorProps {
 export const MonthSelector = memo(
   ({ currentMonth, canGoPrev, canGoNext, onPrev, onNext }: MonthSelectorProps) => {
     return (
-      <div className="flex items-center justify-center gap-4 mt-4 bg-white/10 backdrop-blur-md rounded-full p-1 w-fit mx-auto ring-1 ring-white/10">
+      <div className="flex items-center justify-center gap-3 mt-4">
         <button
           onClick={onPrev}
           disabled={!canGoPrev}
-          className={`p-2 rounded-full hover:bg-white/20 transition-all cursor-pointer ${
-            !canGoPrev ? 'opacity-30 cursor-not-allowed' : 'text-white'
+          className={`p-2 rounded border transition-all cursor-pointer ${
+            !canGoPrev
+              ? 'border-white/5 text-white/20 cursor-not-allowed'
+              : 'border-arcane/40 text-arcane-light hover:bg-arcane/10 hover:border-arcane'
           }`}
           aria-label="Previous month"
         >
-          <ChevronLeft size={20} />
+          <ChevronLeft size={16} />
         </button>
 
-        <span className="text-lg font-medium text-white w-28 tracking-wide text-center">
-          {MONTHS[currentMonth]}
-        </span>
+        <div className="px-4 py-1.5 border border-white/10 rounded bg-deep-void/60">
+          <span className="font-pixel text-[10px] text-white/70 tracking-wider">
+            {MONTHS[currentMonth]}
+          </span>
+        </div>
 
         <button
           onClick={onNext}
           disabled={!canGoNext}
-          className={`p-2 rounded-full hover:bg-white/20 transition-all cursor-pointer ${
-            !canGoNext ? 'opacity-30 cursor-not-allowed' : 'text-white'
+          className={`p-2 rounded border transition-all cursor-pointer ${
+            !canGoNext
+              ? 'border-white/5 text-white/20 cursor-not-allowed'
+              : 'border-arcane/40 text-arcane-light hover:bg-arcane/10 hover:border-arcane'
           }`}
           aria-label="Next month"
         >
-          <ChevronRight size={20} />
+          <ChevronRight size={16} />
         </button>
       </div>
     );
